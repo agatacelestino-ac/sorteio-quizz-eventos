@@ -395,7 +395,7 @@
         <div class="hero-head">
           <div class="hero-kicker">Sorteio oficial</div>
           <h1>Sorteio do Kit ADVBOX</h1>
-          <div class="event-subtitle" id="draw-event-name">Nome do evento</div>
+          <div class="event-subtitle" id="draw-event-name"></div>
         </div>
 
         <p class="sub">
@@ -483,7 +483,7 @@
       currentEventSlug = getEventSlugFromUrl();
 
       if (!currentEventSlug) {
-        document.getElementById('draw-event-name').textContent = 'Evento não identificado';
+        document.getElementById('draw-event-name').textContent = '';
         return;
       }
 
@@ -508,7 +508,7 @@
         currentEventName = EVENT_CONFIG[currentEventSlug].name;
       }
 
-      document.getElementById('draw-event-name').textContent = currentEventName || 'Evento não encontrado';
+      document.getElementById('draw-event-name').textContent = currentEventName || '';
     }
 
     function setStatus(message, type) {
