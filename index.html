@@ -6,16 +6,20 @@
   <title>Sorteio ADVBOX</title>
   <style>
     :root {
-      --bg: #08162f;
-      --panel: #102446;
-      --panel-2: #112b54;
-      --border: rgba(122, 184, 255, 0.22);
+      --page: #061124;
+      --page-2: #081a35;
+      --panel: rgba(13, 32, 63, 0.88);
+      --panel-strong: rgba(18, 43, 83, 0.92);
+      --line: rgba(122, 184, 255, 0.2);
+      --line-strong: rgba(122, 184, 255, 0.34);
       --text: #ffffff;
-      --muted: #b5d1ff;
-      --accent: #3b82f6;
-      --accent-2: #60a5fa;
-      --danger: #ff6b81;
-      --success: #66d19e;
+      --muted: #b8cff0;
+      --soft: #7ab8ff;
+      --accent: #4f8dff;
+      --accent-strong: #1263ff;
+      --danger: #ff6b8a;
+      --success: #72e2ad;
+      --shadow: rgba(0, 0, 0, 0.36);
     }
 
     * {
@@ -25,176 +29,175 @@
       font-family: Arial, sans-serif;
     }
 
+    html {
+      background: var(--page);
+    }
+
     body {
       min-height: 100vh;
-      background:
-        radial-gradient(circle at top, rgba(59, 130, 246, 0.15), transparent 35%),
-        linear-gradient(180deg, #091429 0%, #07101f 100%);
       color: var(--text);
       padding: 32px 16px;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(79, 141, 255, 0.24), transparent 32%),
+        radial-gradient(circle at 18% 18%, rgba(122, 184, 255, 0.12), transparent 26%),
+        linear-gradient(180deg, var(--page-2) 0%, var(--page) 72%);
     }
 
     .wrap {
-      max-width: 720px;
+      width: min(100%, 900px);
       margin: 0 auto;
     }
 
     .panel {
-      background: rgba(16, 36, 70, 0.92);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
-      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(17, 41, 80, 0.94) 0%, rgba(9, 24, 50, 0.96) 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: clamp(28px, 4vw, 44px);
+      box-shadow: 0 34px 90px var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 28%, transparent 72%, rgba(122, 184, 255, 0.08)),
+        radial-gradient(circle at 78% 0%, rgba(96, 165, 250, 0.18), transparent 34%);
+      opacity: 0.9;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
     }
 
     .brand {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 26px;
-}
+      display: flex;
+      justify-content: center;
+      margin-bottom: clamp(28px, 5vw, 44px);
+    }
 
-.brand-logo {
-  width: min(280px, 62%);
-  height: auto;
-  display: block;
-}
+    .brand-logo {
+      width: min(330px, 68%);
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.24));
+    }
 
-.hero-head {
-  margin-bottom: 18px;
-}
+    .hero-head {
+      max-width: 720px;
+      margin-bottom: 22px;
+    }
 
-.hero-kicker {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-2);
-  margin-bottom: 10px;
-}
+    .hero-kicker {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 14px;
+    }
 
-h1 {
-  font-size: clamp(2.1rem, 5vw, 3.1rem);
-  line-height: 1.04;
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
-}
+    h1 {
+      max-width: 11ch;
+      font-size: clamp(2.55rem, 6vw, 4.65rem);
+      line-height: 0.98;
+      margin-bottom: 18px;
+      letter-spacing: 0;
+    }
 
-.event-subtitle {
-  font-size: clamp(1.02rem, 2.3vw, 1.32rem);
-  font-weight: 700;
-  color: #d7e7ff;
-  opacity: 0.92;
-  line-height: 1.35;
-  max-width: 26ch;
-}
+    .event-subtitle {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      color: #d8e8ff;
+      font-size: clamp(1rem, 2.2vw, 1.28rem);
+      font-weight: 800;
+      line-height: 1.3;
+      padding-bottom: 3px;
+      border-bottom: 1px solid rgba(122, 184, 255, 0.34);
+    }
 
+    .sub {
+      max-width: 560px;
+      color: #edf5ff;
+      font-size: clamp(1rem, 2vw, 1.14rem);
+      font-weight: 700;
+      line-height: 1.42;
+      margin-top: 26px;
+      margin-bottom: 36px;
+    }
 
-.panel {
-  background: linear-gradient(180deg, rgba(18, 40, 78, 0.94) 0%, rgba(14, 31, 61, 0.96) 100%);
-  border: 1px solid rgba(122, 184, 255, 0.18);
-  border-radius: 22px;
-  padding: 32px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
-  backdrop-filter: blur(14px);
-}
+    .form-card {
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(122, 184, 255, 0.16);
+      border-radius: 20px;
+      padding: clamp(18px, 3vw, 26px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
 
-.field input {
-  width: 100%;
-  min-height: 56px;
-  border-radius: 14px;
-  border: 1px solid rgba(122, 184, 255, 0.18);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text);
-  padding: 14px 18px;
-  font-size: 1rem;
-  outline: none;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-}
-
-.field input:focus {
-  border-color: var(--accent-2);
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.14);
-}
-
-.btn-primary {
-  background: linear-gradient(180deg, #4f8dff 0%, #2467e8 100%);
-  color: white;
-  flex: 1 1 220px;
-  box-shadow: 0 10px 24px rgba(36, 103, 232, 0.28);
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.07);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  flex: 1 1 180px;
-}
-
-.result {
-  margin-top: 28px;
-  padding: 24px;
-  background: linear-gradient(180deg, rgba(8, 19, 40, 0.96) 0%, rgba(10, 24, 49, 0.94) 100%);
-  border: 1px solid rgba(122, 184, 255, 0.16);
-  border-radius: 18px;
-  display: none;
-}
-
-@media (max-width: 640px) {
-  .panel {
-    padding: 24px 20px;
-    border-radius: 18px;
-  }
-
-  .brand-logo {
-    width: min(240px, 72%);
-  }
-
-  h1 {
-    font-size: clamp(1.9rem, 8vw, 2.5rem);
-  }
-
-  .event-subtitle {
-    font-size: 1rem;
-  }
-
-  .sub {
-    font-size: 0.98rem;
-  }
-}
-
-
-  
     .grid {
       display: grid;
-      gap: 16px;
+      gap: 20px;
     }
 
     .field label {
       display: block;
-      font-size: 0.82rem;
-      color: var(--muted);
+      color: #c5dcff;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      line-height: 1.2;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-      .actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 12px;
+    .field input {
+      width: 100%;
+      min-height: 62px;
+      border-radius: 16px;
+      border: 1px solid rgba(122, 184, 255, 0.22);
+      background: rgba(4, 16, 36, 0.34);
+      color: var(--text);
+      padding: 16px 20px;
+      font-size: 1.03rem;
+      font-weight: 700;
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .field input::placeholder {
+      color: rgba(255, 255, 255, 0.44);
+      font-weight: 500;
+    }
+
+    .field input:focus {
+      border-color: var(--soft);
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr);
+      gap: 14px;
+      margin-top: 22px;
     }
 
     button {
-      min-height: 52px;
-      padding: 0 18px;
+      min-height: 58px;
+      padding: 0 22px;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
+      color: white;
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
-      transition: transform 0.12s ease, opacity 0.12s ease, background 0.12s ease;
+      transition: transform 0.16s ease, opacity 0.16s ease, background 0.16s ease, border-color 0.16s ease;
     }
 
     button:hover:not(:disabled) {
@@ -202,15 +205,43 @@ h1 {
     }
 
     button:disabled {
-      opacity: 0.7;
+      opacity: 0.72;
       cursor: wait;
     }
 
-    
+    .btn-primary {
+      background: linear-gradient(180deg, #5b96ff 0%, var(--accent-strong) 100%);
+      box-shadow: 0 14px 34px rgba(18, 99, 255, 0.34);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #edf5ff;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      border-color: rgba(122, 184, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
     .status {
-      min-height: 24px;
-      margin-top: 16px;
+      min-height: 28px;
+      margin-top: 18px;
       color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .status.error,
+    .status.success {
+      display: inline-flex;
+      width: 100%;
+      align-items: center;
+      border-radius: 14px;
+      padding: 13px 16px;
+      border: 1px solid currentColor;
+      background: rgba(255, 255, 255, 0.04);
     }
 
     .status.error {
@@ -221,29 +252,40 @@ h1 {
       color: var(--success);
     }
 
-    
+    .result {
+      margin-top: 28px;
+      padding: clamp(22px, 3vw, 30px);
+      background: linear-gradient(180deg, rgba(5, 18, 39, 0.94) 0%, rgba(8, 26, 54, 0.94) 100%);
+      border: 1px solid rgba(122, 184, 255, 0.2);
+      border-radius: 20px;
+      display: none;
+    }
+
     .result.show {
       display: block;
     }
 
     .eyebrow {
-      color: var(--accent-2);
+      color: var(--soft);
       font-size: 0.78rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 10px;
+      letter-spacing: 0.16em;
+      margin-bottom: 12px;
     }
 
     .winner-number {
-      font-size: clamp(2.4rem, 7vw, 4rem);
+      font-size: clamp(2.8rem, 7vw, 4.9rem);
+      line-height: 1;
       font-weight: 900;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .winner-name {
-      font-size: clamp(1.4rem, 4vw, 2rem);
-      font-weight: 800;
-      margin-bottom: 18px;
+      color: #f4f8ff;
+      font-size: clamp(1.45rem, 4vw, 2.2rem);
+      font-weight: 900;
+      margin-bottom: 22px;
     }
 
     .meta {
@@ -252,127 +294,160 @@ h1 {
     }
 
     .meta-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 15px 16px;
+    }
+
+    .meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
     }
 
     .meta-label {
       display: block;
-      font-size: 0.74rem;
       color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 6px;
+      letter-spacing: 0.14em;
     }
 
     .meta-value {
       font-size: 1rem;
       word-break: break-word;
     }
-    .meta-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 6px;
-}
 
-.reveal-btn {
-  width: 34px;
-  height: 34px;
-  min-height: 34px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.06);
-  color: white;
-  font-size: 1rem;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-}
+    .reveal-btn {
+      width: 36px;
+      height: 36px;
+      min-height: 36px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+      font-size: 1rem;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
 
-.reveal-btn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.12);
-  transform: none;
-}
+    .reveal-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.12);
+      transform: none;
+    }
 
-.sensitive-value {
-  filter: blur(6px);
-  user-select: none;
-  transition: filter 0.15s ease;
-}
+    .sensitive-value {
+      filter: blur(6px);
+      user-select: none;
+      transition: filter 0.15s ease;
+    }
 
-.sensitive-value.revealed {
-  filter: none;
-  user-select: text;
-}
+    .sensitive-value.revealed {
+      filter: none;
+      user-select: text;
+    }
 
+    @media (max-width: 640px) {
+      body {
+        padding: 18px 12px;
+      }
+
+      .panel {
+        border-radius: 20px;
+        padding: 24px 18px;
+      }
+
+      .brand-logo {
+        width: min(255px, 76%);
+      }
+
+      h1 {
+        max-width: 10ch;
+        font-size: clamp(2.25rem, 12vw, 3.25rem);
+      }
+
+      .sub {
+        margin-top: 22px;
+        margin-bottom: 28px;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="panel">
-      <div class="brand">
-  <img src="advbox-logo.png" alt="ADVBOX" class="brand-logo">
-</div>
-
-<div class="hero-head">
-  <div class="hero-kicker">Sorteio oficial</div>
-  <h1>Sorteio do Kit ADVBOX</h1>
-  <div class="event-subtitle" id="draw-event-name">Nome do evento</div>
-</div>
-
-<p class="sub">
-  Se voc participou do Quizz, este é o seu momento.<br>
-  Fique atento. O ganhador seré revelado em instantes.
-</p>
-
-      <div class="grid">
-        <div class="field">
-          <label for="quiz-id">Código do sorteio</label>
-          <input id="quiz-id" type="text" value="0ac71938-c36d-4165-970b-630440d33c2b">
+      <div class="content">
+        <div class="brand">
+          <img src="advbox-logo.png" alt="ADVBOX" class="brand-logo">
         </div>
 
-        <div class="field">
-          <label for="draw-pin">PIN do sorteio</label>
-          <input id="draw-pin" type="password" placeholder="Digite o PIN">
+        <div class="hero-head">
+          <div class="hero-kicker">Sorteio oficial</div>
+          <h1>Sorteio do Kit ADVBOX</h1>
+          <div class="event-subtitle" id="draw-event-name">Nome do evento</div>
         </div>
-      </div>
 
-      <div class="actions">
-        <button class="btn-primary" id="draw-btn">Sortear vencedor</button>
-        <button class="btn-secondary" id="reset-btn" type="button">Limpar resultado</button>
-      </div>
+        <p class="sub">
+          Se você participou do Quizz, este é o seu momento.<br>
+          Fique atento. O ganhador será revelado em instantes.
+        </p>
 
-      <div class="status" id="status"></div>
+        <div class="form-card">
+          <div class="grid">
+            <div class="field">
+              <label for="quiz-id">Código do sorteio</label>
+              <input id="quiz-id" type="text" value="0ac71938-c36d-4165-970b-630440d33c2b">
+            </div>
 
-      <div class="result" id="result-card">
-        <div class="eyebrow">O ganhador é:</div>
-        <div class="winner-number" id="winner-number">00000</div>
-        <div class="winner-name" id="winner-name">Nome do participante</div>
-        <div class="meta">
-        <div class="meta-item">
-  <div class="meta-top">
-    <span class="meta-label">WhatsApp</span>
-    <button class="reveal-btn" type="button" data-target="winner-whatsapp" aria-label="Mostrar WhatsApp">👁</button>
-  </div>
-  <div class="meta-value sensitive-value" id="winner-whatsapp">-</div>
-</div>
-<div class="meta-item">
-  <div class="meta-top">
-    <span class="meta-label">E-mail</span>
-    <button class="reveal-btn" type="button" data-target="winner-email" aria-label="Mostrar e-mail">👁</button>
-  </div>
-  <div class="meta-value sensitive-value" id="winner-email">-</div>
-</div>
+            <div class="field">
+              <label for="draw-pin">PIN do sorteio</label>
+              <input id="draw-pin" type="password" placeholder="Digite o PIN">
+            </div>
+          </div>
 
-          <div class="meta-item">
-            <span class="meta-label">Data do sorteio</span>
-            <div class="meta-value" id="winner-drawn-at">-</div>
+          <div class="actions">
+            <button class="btn-primary" id="draw-btn">Sortear vencedor</button>
+            <button class="btn-secondary" id="reset-btn" type="button">Limpar resultado</button>
+          </div>
+
+          <div class="status" id="status"></div>
+        </div>
+
+        <div class="result" id="result-card">
+          <div class="eyebrow">O ganhador é:</div>
+          <div class="winner-number" id="winner-number">00000</div>
+          <div class="winner-name" id="winner-name">Nome do participante</div>
+          <div class="meta">
+            <div class="meta-item">
+              <div class="meta-top">
+                <span class="meta-label">WhatsApp</span>
+                <button class="reveal-btn" type="button" data-target="winner-whatsapp" aria-label="Mostrar WhatsApp">👁</button>
+              </div>
+              <div class="meta-value sensitive-value" id="winner-whatsapp">-</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-top">
+                <span class="meta-label">E-mail</span>
+                <button class="reveal-btn" type="button" data-target="winner-email" aria-label="Mostrar e-mail">👁</button>
+              </div>
+              <div class="meta-value sensitive-value" id="winner-email">-</div>
+            </div>
+
+            <div class="meta-item">
+              <span class="meta-label">Data do sorteio</span>
+              <div class="meta-value" id="winner-drawn-at">-</div>
+            </div>
           </div>
         </div>
       </div>
@@ -382,21 +457,20 @@ h1 {
   <script>
     const DRAW_WINNER_URL = 'https://nonlpkjdenbmshyugejk.supabase.co/functions/v1/draw-winner';
     let currentEventSlug = '';
-let currentEventName = '';
-let currentEventId = '';
+    let currentEventName = '';
+    let currentEventId = '';
 
-const EVENT_CONFIG = {
-  'ab2l-2026': {
-    id: '2931ed30-0be4-4a1b-a512-01aa21d725a6',
-    name: 'AB2L LawTech Experience 2026'
-  }
-};
+    const EVENT_CONFIG = {
+      'ab2l-2026': {
+        id: '2931ed30-0be4-4a1b-a512-01aa21d725a6',
+        name: 'AB2L LawTech Experience 2026'
+      }
+    };
 
-function getEventSlugFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get('event') || '';
-  }
-
+    function getEventSlugFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('event') || '';
+    }
 
     const drawBtn = document.getElementById('draw-btn');
     const resetBtn = document.getElementById('reset-btn');
@@ -406,13 +480,12 @@ function getEventSlugFromUrl() {
 
     currentEventSlug = getEventSlugFromUrl();
 
-if (currentEventSlug && EVENT_CONFIG[currentEventSlug]) {
-  currentEventId = EVENT_CONFIG[currentEventSlug].id;
-  currentEventName = EVENT_CONFIG[currentEventSlug].name;
+    if (currentEventSlug && EVENT_CONFIG[currentEventSlug]) {
+      currentEventId = EVENT_CONFIG[currentEventSlug].id;
+      currentEventName = EVENT_CONFIG[currentEventSlug].name;
 
-  document.getElementById('draw-event-name').textContent = currentEventName;
-}
-
+      document.getElementById('draw-event-name').textContent = currentEventName;
+    }
 
     function setStatus(message, type) {
       statusEl.textContent = message || '';
@@ -434,7 +507,7 @@ if (currentEventSlug && EVENT_CONFIG[currentEventSlug]) {
       document.getElementById('winner-whatsapp').textContent = data.whatsapp ?? '-';
       document.getElementById('winner-email').textContent = data.email ?? '-';
       document.getElementById('winner-whatsapp').classList.remove('revealed');
-document.getElementById('winner-email').classList.remove('revealed');
+      document.getElementById('winner-email').classList.remove('revealed');
 
       document.getElementById('winner-drawn-at').textContent = formatDate(data.drawn_at);
       resultCard.classList.add('show');
@@ -450,7 +523,12 @@ document.getElementById('winner-email').classList.remove('revealed');
       const pin = document.getElementById('draw-pin').value.trim();
 
       if (!quizId) {
-        setStatus('Informe o codigo do evento.', 'error');
+        setStatus('Informe o código do sorteio.', 'error');
+        return;
+      }
+
+      if (!currentEventId) {
+        setStatus('Abra o link correto do evento para realizar o sorteio.', 'error');
         return;
       }
 
@@ -479,14 +557,14 @@ document.getElementById('winner-email').classList.remove('revealed');
         const data = await response.json();
 
         if (!response.ok) {
-  setStatus(
-    data.debug
-      ? (data.error + ' Debug: ' + data.debug)
-      : (data.error || 'Nao foi possivel realizar o sorteio.'),
-    'error'
-  );
-  return;
-}
+          setStatus(
+            data.debug
+              ? (data.error + ' Debug: ' + data.debug)
+              : (data.error || 'Não foi possível realizar o sorteio.'),
+            'error'
+          );
+          return;
+        }
 
         showResult(data);
         setStatus('Sorteio realizado com sucesso.', 'success');
@@ -502,13 +580,12 @@ document.getElementById('winner-email').classList.remove('revealed');
     drawBtn.addEventListener('click', drawWinner);
     resetBtn.addEventListener('click', clearResult);
     revealButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const targetId = button.getAttribute('data-target');
-    const target = document.getElementById(targetId);
-    if (target) target.classList.toggle('revealed');
-  });
-});
-
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (target) target.classList.toggle('revealed');
+      });
+    });
   </script>
 </body>
 </html>
