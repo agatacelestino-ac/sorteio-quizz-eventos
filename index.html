@@ -456,6 +456,7 @@
 
   <script>
     const DRAW_WINNER_URL = 'https://nonlpkjdenbmshyugejk.supabase.co/functions/v1/draw-winner';
+    const EVENT_LOOKUP_URL = 'https://nonlpkjdenbmshyugejk.supabase.co/functions/v1/get-event-by-slug';
     let currentEventSlug = '';
     let currentEventName = '';
     let currentEventId = '';
@@ -478,13 +479,36 @@
     const resultCard = document.getElementById('result-card');
     const revealButtons = document.querySelectorAll('.reveal-btn');
 
-    currentEventSlug = getEventSlugFromUrl();
+    async function loadEventConfig() {
+      currentEventSlug = getEventSlugFromUrl();
 
-    if (currentEventSlug && EVENT_CONFIG[currentEventSlug]) {
-      currentEventId = EVENT_CONFIG[currentEventSlug].id;
-      currentEventName = EVENT_CONFIG[currentEventSlug].name;
+      if (!currentEventSlug) {
+        document.getElementById('draw-event-name').textContent = 'Evento não identificado';
+        return;
+      }
 
-      document.getElementById('draw-event-name').textContent = currentEventName;
+      try {
+        const response = await fetch(`${EVENT_LOOKUP_URL}?event=${encodeURIComponent(currentEventSlug)}`);
+        const data = await response.json();
+
+        if (response.ok) {
+          currentEventId = data.event_id;
+          currentEventName = data.name;
+
+          if (data.quiz_id) {
+            document.getElementById('quiz-id').value = data.quiz_id;
+          }
+        }
+      } catch (error) {
+        console.warn('Não foi possível buscar o evento no Supabase.', error);
+      }
+
+      if (!currentEventId && EVENT_CONFIG[currentEventSlug]) {
+        currentEventId = EVENT_CONFIG[currentEventSlug].id;
+        currentEventName = EVENT_CONFIG[currentEventSlug].name;
+      }
+
+      document.getElementById('draw-event-name').textContent = currentEventName || 'Evento não encontrado';
     }
 
     function setStatus(message, type) {
@@ -576,6 +600,11 @@
         drawBtn.textContent = 'Sortear vencedor';
       }
     }
+
+    drawBtn.disabled = true;
+    loadEventConfig().finally(() => {
+      drawBtn.disabled = false;
+    });
 
     drawBtn.addEventListener('click', drawWinner);
     resetBtn.addEventListener('click', clearResult);
